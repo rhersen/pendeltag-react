@@ -12,78 +12,68 @@ const StationLink = React.createClass({
 const Navs = React.createClass({
     getInitialState: function () {
         return {
-            secondsElapsed: 0,
             stations: []
         }
-    },
-    tick: function () {
-        this.setState({secondsElapsed: this.state.secondsElapsed + 1})
     },
     setStations: function (stations) {
         this.setState({stations: stations})
     },
-    componentDidMount: function () {
-        this.interval = setInterval(this.tick, 1000)
-    },
-    componentWillUnmount: function () {
-        clearInterval(this.interval)
-    },
     render: function () {
         return <div id="navs">
             <nav className="pull-left">
-                <StationLink location="Kän">Kän</StationLink>
-                <StationLink location="Khä">Khä</StationLink>
-                <StationLink location="Jkb">Jkb</StationLink>
-                <StationLink location="Bkb">Bkb</StationLink>
-                <StationLink location="Spå">Spå</StationLink>
+                <StationLink location="Kän" />
+                <StationLink location="Khä" />
+                <StationLink location="Jkb" />
+                <StationLink location="Bkb" />
+                <StationLink location="Spå" />
             </nav>
             <nav className="pull-right">
-                <StationLink location="Nvk">Nvk</StationLink>
-                <StationLink location="Hgv">Hgv</StationLink>
-                <StationLink location="Sol">Sol</StationLink>
-                <StationLink location="Hel">Hel</StationLink>
-                <StationLink location="Udl">Udl</StationLink>
+                <StationLink location="Nvk" />
+                <StationLink location="Hgv" />
+                <StationLink location="Sol" />
+                <StationLink location="Hel" />
+                <StationLink location="Udl" />
             </nav>
             <nav className="pull-left narrow">
-                <StationLink location="Sub">Sub</StationLink>
+                <StationLink location="Sub" />
             </nav>
             <nav className="center">
-                <StationLink location="Ke">Ke</StationLink>
+                <StationLink location="Ke" />
             </nav>
             <nav className="pull-right narrow">
-                <StationLink location="So">So</StationLink>
+                <StationLink location="So" />
             </nav>
             <nav className="center wide">
-                <StationLink location="Cst">Cst</StationLink>
-                <StationLink location="Sst">Sst</StationLink>
-                <StationLink location="Åbe">Åbe</StationLink>
+                <StationLink location="Cst" />
+                <StationLink location="Sst" />
+                <StationLink location="Åbe" />
             </nav>
             <nav className="pull-left narrow">
-                <StationLink location="Sta">Sta</StationLink>
+                <StationLink location="Sta" />
             </nav>
             <nav className="center">
-                <StationLink location="Äs">Äs</StationLink>
+                <StationLink location="Äs" />
             </nav>
             <nav className="pull-right narrow">
-                <StationLink location="Fas">Fas</StationLink>
+                <StationLink location="Fas" />
             </nav>
             <nav className="pull-left">
-                <StationLink location="Hu">Hu</StationLink>
-                <StationLink location="Flb">Flb</StationLink>
-                <StationLink location="Tul">Tul</StationLink>
-                <StationLink location="Tu">Tu</StationLink>
-                <StationLink location="Rön">Rön</StationLink>
-                <StationLink location="Öte">Öte</StationLink>
-                <StationLink location="Söd">Söd</StationLink>
+                <StationLink location="Hu" />
+                <StationLink location="Flb" />
+                <StationLink location="Tul" />
+                <StationLink location="Tu" />
+                <StationLink location="Rön" />
+                <StationLink location="Öte" />
+                <StationLink location="Söd" />
             </nav>
             <nav className="pull-right">
-                <StationLink location="Tåd">Tåd</StationLink>
-                <StationLink location="Skg">Skg</StationLink>
-                <StationLink location="Hnd">Hnd</StationLink>
-                <StationLink location="Jbo">Jbo</StationLink>
-                <StationLink location="Vhe">Vhe</StationLink>
-                <StationLink location="Kda">Kda</StationLink>
-                <StationLink location="Ts">Ts</StationLink>
+                <StationLink location="Tåd" />
+                <StationLink location="Skg" />
+                <StationLink location="Hnd" />
+                <StationLink location="Jbo" />
+                <StationLink location="Vhe" />
+                <StationLink location="Kda" />
+                <StationLink location="Ts" />
             </nav>
         </div>
     }
