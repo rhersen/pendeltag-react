@@ -1,10 +1,23 @@
 const React = require('react')
 
+const Time = React.createClass({
+    render: function () {
+        return (
+            <td>
+                {this.stripDate()}
+            </td>
+        )
+    },
+    stripDate: function () {
+        return this.props.data.AdvertisedTimeAtLocation.substr(11, 5)
+    }
+})
+
 const Train = React.createClass({
     render: function () {
         return (
             <tr>
-                <td>{this.props.data.AdvertisedTimeAtLocation}</td>
+                <Time data={this.props.data}/>
                 <td>{this.props.data.ToLocation[0].LocationName}</td>
             </tr>
         )
