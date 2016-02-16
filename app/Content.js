@@ -1,6 +1,7 @@
 const React = require('react')
 
 const Navs = require('./Navs')
+const Trains = require('./Trains')
 
 module.exports = React.createClass({
     getInitialState: function () {
@@ -14,10 +15,14 @@ module.exports = React.createClass({
         this.setState({stations: object})
     },
     setTrains: function (array) {
-        console.log('setTrains', array);
         this.setState({trains: array})
     },
     render: function () {
-        return <Navs stations={this.props.stations} names={this.state.stations} setTrains={this.setTrains}/>
+        return (
+            <div>
+                <Navs stations={this.props.stations} names={this.state.stations} setTrains={this.setTrains}/>
+                <Trains trains={this.state.trains} />
+            </div>
+        )
     }
 })

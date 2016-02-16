@@ -1,19 +1,17 @@
 const React = require('react')
 const _ = require('lodash')
-const request = require('then-request');
+const request = require('then-request')
 
 const StationLink = require('./StationLink')
 
 module.exports = React.createClass({
     getClickHandler: function (station) {
-        const p = this.props;
+        const p = this.props
         function handleClick() {
             return function () {
-                console.log(station);
                 request('GET', 'api/departures/' + station).done(function (res) {
-                    const message = JSON.parse(res.getBody());
-                    const trainAnnouncement = message.RESPONSE.RESULT[0].TrainAnnouncement;
-                    console.log('got', trainAnnouncement.length, 'trains');
+                    const message = JSON.parse(res.getBody())
+                    const trainAnnouncement = message.RESPONSE.RESULT[0].TrainAnnouncement
                     p.setTrains(trainAnnouncement)
                 })
             }
