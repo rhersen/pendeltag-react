@@ -5,18 +5,16 @@ const request = require('then-request');
 const StationLink = require('./StationLink')
 
 module.exports = React.createClass({
-    getInitialState: function () {
-        return {
-            trains: []
-        }
-    },
     getClickHandler: function (station) {
+        const p = this.props;
         function handleClick() {
             return function () {
                 console.log(station);
                 request('GET', 'api/departures/' + station).done(function (res) {
                     const message = JSON.parse(res.getBody());
-                    console.log('got', message.RESPONSE.RESULT[0].TrainAnnouncement.length, 'trains');
+                    const trainAnnouncement = message.RESPONSE.RESULT[0].TrainAnnouncement;
+                    console.log('got', trainAnnouncement.length, 'trains');
+                    p.setTrains(trainAnnouncement)
                 })
             }
         }
