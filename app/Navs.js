@@ -7,6 +7,7 @@ const StationLink = require('./StationLink')
 module.exports = React.createClass({
     getClickHandler: function (station) {
         const p = this.props
+
         function handleClick() {
             return function () {
                 request('GET', 'api/departures/' + station).done(function (res) {
@@ -21,12 +22,15 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        return <div id="navs">
-            <nav className="pull-left">{this.props.stations.nw.map(this.getClickHandler)}</nav>
-            <nav className="pull-right">{this.props.stations.ne.map(this.getClickHandler)}</nav>
-            <nav className="center wide">{this.props.stations.c.map(this.getClickHandler)}</nav>
-            <nav className="pull-left">{this.props.stations.sw.map(this.getClickHandler)}</nav>
-            <nav className="pull-right">{this.props.stations.se.map(this.getClickHandler)}</nav>
-        </div>
+        if (this.props.show) return (
+            <div id="navs">
+                <nav className="pull-left">{this.props.stations.nw.map(this.getClickHandler)}</nav>
+                <nav className="pull-right">{this.props.stations.ne.map(this.getClickHandler)}</nav>
+                <nav className="center wide">{this.props.stations.c.map(this.getClickHandler)}</nav>
+                <nav className="pull-left">{this.props.stations.sw.map(this.getClickHandler)}</nav>
+                <nav className="pull-right">{this.props.stations.se.map(this.getClickHandler)}</nav>
+            </div>
+        )
+        else return <div>Tillbaka</div>
     }
 })

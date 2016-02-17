@@ -20,7 +20,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div>
-                <Navs stations={this.props.stations} names={this.state.stations} setTrains={this.setTrains}/>
+                <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1} setTrains={this.setTrains} />
                 <Trains trains={this.state.trains} />
             </div>
         )
