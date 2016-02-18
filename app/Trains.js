@@ -2,14 +2,21 @@ const React = require('react')
 
 const Time = React.createClass({
     render: function () {
-        return (
-            <td>
-                {this.stripDate()}
-            </td>
-        )
+        return <td>{this.getData()}</td>
     },
-    stripDate: function () {
-        return this.props.data.AdvertisedTimeAtLocation.substr(11, 5)
+    getData: function () {
+        const s = this.props.data.AdvertisedTimeAtLocation;
+        return s && s.substr(11, 5)
+    }
+})
+
+const Location = React.createClass({
+    render: function () {
+        return <td>{this.getData()}</td>
+    },
+    getData: function () {
+        const a = this.props.data.ToLocation;
+        return a && a[0].LocationName
     }
 })
 
@@ -18,7 +25,7 @@ const Train = React.createClass({
         return (
             <tr>
                 <Time data={this.props.data}/>
-                <td>{this.props.data.ToLocation[0].LocationName}</td>
+                <Location data={this.props.data}/>
             </tr>
         )
     }
@@ -29,7 +36,7 @@ module.exports = React.createClass({
         return (
             <table>
                 <tbody>
-                {this.props.trains.map(this.train)}
+                {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(this.train)}
                 </tbody>
             </table>
         )
