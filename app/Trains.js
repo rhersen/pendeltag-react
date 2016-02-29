@@ -1,47 +1,49 @@
-const React = require('react')
+import React from 'react';
 
-const Time = React.createClass({
-    render: function () {
-        return <td>{this.getData()}</td>
-    },
-    getData: function () {
-        const s = this.props.data.AdvertisedTimeAtLocation;
-        return s && s.substr(11, 5)
-    }
-})
+class Time extends React.Component {
+  render() {
+    return <td>{this.getData()}</td>
+  }
 
-const Location = React.createClass({
-    render: function () {
-        return <td>{this.getData()}</td>
-    },
-    getData: function () {
-        const a = this.props.data.ToLocation;
-        return a && a[0].LocationName
-    }
-})
+  getData() {
+    const s = this.props.data.AdvertisedTimeAtLocation;
+    return s && s.substr(11, 5)
+  }
+}
 
-const Train = React.createClass({
-    render: function () {
-        return (
-            <tr>
-                <Time data={this.props.data}/>
-                <Location data={this.props.data}/>
-            </tr>
-        )
-    }
-})
+class Location extends React.Component {
+  render() {
+    return <td>{this.getData()}</td>
+  }
 
-module.exports = React.createClass({
-    render: function () {
-        return (
-            <table>
-                <tbody>
-                {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(this.train)}
-                </tbody>
-            </table>
-        )
-    },
-    train: function (data) {
-        return <Train data={data} key={data.AdvertisedTrainIdent}/>
-    }
-})
+  getData() {
+    const a = this.props.data.ToLocation;
+    return a && a[0].LocationName
+  }
+}
+
+class Train extends React.Component {
+  render() {
+    return <tr>
+      <Time data={this.props.data}/>
+      <Location data={this.props.data}/>
+    </tr>
+  }
+}
+
+export default class Trains extends React.Component {
+  render() {
+    return (
+      <table>
+        <tbody>
+        {
+          this.props.trains
+            .filter(train => train.AdvertisedTrainIdent)
+            .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
+        }
+        </tbody>
+      </table>
+    )
+  }
+}
+

@@ -1,7 +1,7 @@
 const React = require('react')
 
 require("./style.css")
-const Content = require('./Content')
+import Content from './Content'
 
 const stations = {
     nw: ['Kän', 'Khä', 'Jkb', 'Bkb', 'Spå', 'Sub'],

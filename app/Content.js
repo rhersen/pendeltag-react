@@ -1,28 +1,30 @@
 const React = require('react')
 
-const Navs = require('./Navs')
-const Trains = require('./Trains')
+import Navs from './Navs'
+import Trains from './Trains'
 
-module.exports = React.createClass({
-    getInitialState: function () {
-        return {
-            stations: {},
-            trains: []
-        }
-    },
-    setStations: function (array) {
-        const object = _.zipObject(_.map(array, 'LocationSignature'), _.map(array, 'AdvertisedShortLocationName'))
-        this.setState({stations: object})
-    },
-    setTrains: function (array) {
-        this.setState({trains: array})
-    },
-    render: function () {
-        return (
-            <div>
-                <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1} setTrains={this.setTrains} />
-                <Trains trains={this.state.trains} />
-            </div>
-        )
-    }
-})
+export default class Content extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stations: {}, trains: []
+    };
+  }
+
+  setStations(array) {
+    const object = _.zipObject(_.map(array, 'LocationSignature'), _.map(array, 'AdvertisedShortLocationName'))
+    this.setState({stations: object})
+  }
+
+  setTrains(array) {
+    this.setState({trains: array})
+  }
+
+  render() {
+    return <div>
+      <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1}
+            setTrains={this.setTrains.bind(this)}/>
+      <Trains trains={this.state.trains}/>
+    </div>
+  }
+}

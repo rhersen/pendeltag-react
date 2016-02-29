@@ -1,7 +1,7 @@
-const React = require('react')
+import React from 'react';
 
-module.exports = React.createClass({
-    render: function () {
-        return <div onClick={this.props.onClick}>{this.props.name || this.props.key}</div>
-    }
-})
+export default class StationLink extends React.Component {
+  render() {
+    return <div onClick={this.props.onClick}>{this.props.name || this.props.key}</div>
+  }
+}
