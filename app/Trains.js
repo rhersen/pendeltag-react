@@ -1,49 +1,41 @@
 import React from 'react';
 
-class Time extends React.Component {
-  render() {
-    return <td>{this.getData()}</td>
-  }
+function Time(props) {
+  return <td>{getData()}</td>
 
-  getData() {
-    const s = this.props.data.AdvertisedTimeAtLocation;
+  function getData() {
+    const s = props.data.AdvertisedTimeAtLocation;
     return s && s.substr(11, 5)
   }
 }
 
-class Location extends React.Component {
-  render() {
-    return <td>{this.getData()}</td>
-  }
+function Location(props) {
+  return <td>{getData()}</td>
 
-  getData() {
-    const a = this.props.data.ToLocation;
+  function getData() {
+    const a = props.data.ToLocation;
     return a && a[0].LocationName
   }
 }
 
-class Train extends React.Component {
-  render() {
-    return <tr>
-      <Time data={this.props.data}/>
-      <Location data={this.props.data}/>
-    </tr>
-  }
+function Train(props) {
+  return <tr>
+    <Time data={props.data}/>
+    <Location data={props.data}/>
+  </tr>
 }
 
-export default class Trains extends React.Component {
-  render() {
-    return (
-      <table>
-        <tbody>
-        {
-          this.props.trains
-            .filter(train => train.AdvertisedTrainIdent)
-            .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
-        }
-        </tbody>
-      </table>
-    )
-  }
+export default function Trains(props) {
+  return (
+    <table>
+      <tbody>
+      {
+        props.trains
+          .filter(train => train.AdvertisedTrainIdent)
+          .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
+      }
+      </tbody>
+    </table>
+  )
 }
 

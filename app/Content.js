@@ -16,14 +16,10 @@ export default class Content extends React.Component {
     this.setState({stations: object})
   }
 
-  setTrains(array) {
-    this.setState({trains: array})
-  }
-
   render() {
     return <div>
       <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1}
-            setTrains={this.setTrains.bind(this)}/>
+            setTrains={(array) => this.setState({trains: array})}/>
       <Trains trains={this.state.trains}/>
     </div>
   }
