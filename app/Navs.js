@@ -26,5 +26,5 @@ export default function Navs(props) {
     <nav className="pull-left">{props.stations.sw.map(stationLink)}</nav>
     <nav className="pull-right">{props.stations.se.map(stationLink)}</nav>
   </div>
-  return <div id="navs" onClick={()=>{props.setTrains([])}}>Tillbaka</div>
+  return <div id="navs" onClick={() => props.setTrains([])}>Tillbaka</div>
 }
