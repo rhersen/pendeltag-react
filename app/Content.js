@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 
 import Navs from './Navs'
 import Trains from './Trains'

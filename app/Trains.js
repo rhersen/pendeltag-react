@@ -1,19 +1,17 @@
 import React from 'react';
 
 function Time(props) {
-  return <td>{getData()}</td>
+  return <td>{getData(props.data.AdvertisedTimeAtLocation)}</td>
 
-  function getData() {
-    const s = props.data.AdvertisedTimeAtLocation;
+  function getData(s) {
     return s && s.substr(11, 5)
   }
 }
 
 function Location(props) {
-  return <td>{getData()}</td>
+  return <td>{getData(props.data.ToLocation)}</td>
 
-  function getData() {
-    const a = props.data.ToLocation;
+  function getData(a) {
     return a && a[0].LocationName
   }
 }
@@ -26,16 +24,14 @@ function Train(props) {
 }
 
 export default function Trains(props) {
-  return (
-    <table>
-      <tbody>
-      {
-        props.trains
-          .filter(train => train.AdvertisedTrainIdent)
-          .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
-      }
-      </tbody>
-    </table>
-  )
+  return <table>
+    <tbody>
+    {
+      props.trains
+        .filter(train => train.AdvertisedTrainIdent)
+        .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
+    }
+    </tbody>
+  </table>
 }
 
