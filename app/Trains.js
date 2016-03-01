@@ -1,47 +1,46 @@
 const React = require('react')
 
-const Time = React.createClass({
-    render: function () {
-        return <td>{this.getData()}</td>
-    },
-    getData: function () {
-        const s = this.props.data.AdvertisedTimeAtLocation;
-        return s && s.substr(11, 5)
-    }
-})
+class Time extends React.Component {
+  render() {
+    return <td>{getData(this.props.data.AdvertisedTimeAtLocation)}</td>
 
-const Location = React.createClass({
-    render: function () {
-        return <td>{this.getData()}</td>
-    },
-    getData: function () {
-        const a = this.props.data.ToLocation;
-        return a && a[0].LocationName
+    function getData(s) {
+      return s && s.substr(11, 5);
     }
-})
+  }
+}
 
-const Train = React.createClass({
-    render: function () {
-        return (
-            <tr>
-                <Time data={this.props.data}/>
-                <Location data={this.props.data}/>
-            </tr>
-        )
-    }
-})
+class Location extends React.Component {
+  render() {
+    return <td>{getData(this.props.data.ToLocation)}</td>
 
-module.exports = React.createClass({
-    render: function () {
-        return (
-            <table>
-                <tbody>
-                {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(this.train)}
-                </tbody>
-            </table>
-        )
-    },
-    train: function (data) {
-        return <Train data={data} key={data.AdvertisedTrainIdent}/>
+    function getData(a) {
+      return a && a[0].LocationName;
     }
-})
+  }
+}
+
+class Train extends React.Component {
+  render() {
+    return <tr>
+      <Time data={this.props.data}/>
+      <Location data={this.props.data}/>
+    </tr>
+  }
+}
+
+class Trains extends React.Component {
+  render() {
+    return <table>
+      <tbody>
+      {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(train)}
+      </tbody>
+    </table>
+
+    function train(data) {
+      return <Train data={data} key={data.AdvertisedTrainIdent}/>
+    }
+  }
+}
+
+module.exports = Trains
