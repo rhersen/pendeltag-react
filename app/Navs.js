@@ -6,7 +6,7 @@ function StationLink(props) {
   return <div onClick={props.onClick}>{props.name || props.key}</div>;
 }
 
-export default function Navs(props) {
+function Navs(props) {
   if (props.show) return <div id="navs">
     <nav className="pull-left">{props.stations.nw.map(stationLink)}</nav>
     <nav className="pull-right">{props.stations.ne.map(stationLink)}</nav>
@@ -30,3 +30,5 @@ export default function Navs(props) {
     props.setTrains(trainAnnouncement)
   }
 }
+
+module.exports = Navs

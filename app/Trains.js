@@ -23,15 +23,18 @@ function Train(props) {
   </tr>
 }
 
-export default function Trains(props) {
-  return <table>
-    <tbody>
-    {
-      props.trains
-        .filter(train => train.AdvertisedTrainIdent)
-        .map(data => <Train data={data} key={data.AdvertisedTrainIdent}/>)
+class Trains extends React.Component {
+  render() {
+    return <table>
+      <tbody>
+      {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(train)}
+      </tbody>
+    </table>
+
+    function train(data) {
+      return <Train data={data} key={data.AdvertisedTrainIdent}/>
     }
-    </tbody>
-  </table>
+  }
 }
 
+module.exports = Trains

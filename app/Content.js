@@ -3,7 +3,7 @@ import React from 'react'
 import Navs from './Navs'
 import Trains from './Trains'
 
-export default class Content extends React.Component {
+class Content extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,3 +24,5 @@ export default class Content extends React.Component {
     </div>
   }
 }
+
+module.exports = Content
