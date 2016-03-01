@@ -12,14 +12,17 @@ function Location(props) {
   return <td>{getData(props.data.ToLocation)}</td>
 
   function getData(a) {
-    return a && a[0].LocationName
+    if (a) {
+      const key = a[0].LocationName;
+      return props.stations && props.stations[key] || key;
+    }
   }
 }
 
 function Train(props) {
   return <tr>
     <Time data={props.data}/>
-    <Location data={props.data}/>
+    <Location data={props.data} stations={props.stations}/>
   </tr>
 }
 
@@ -27,13 +30,11 @@ class Trains extends React.Component {
   render() {
     return <table>
       <tbody>
-      {this.props.trains.filter(train => train.AdvertisedTrainIdent).map(train)}
+      {this.props.trains
+        .filter(train => train.AdvertisedTrainIdent)
+        .map(data => <Train data={data} key={data.AdvertisedTrainIdent} stations={this.props.stations}/>)}
       </tbody>
     </table>
-
-    function train(data) {
-      return <Train data={data} key={data.AdvertisedTrainIdent}/>
-    }
   }
 }
 
