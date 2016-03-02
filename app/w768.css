@@ -1,0 +1,32 @@
+@media screen and (min-width: 700px) and (max-width: 800px) {
+    .pull-left {
+        float: left;
+        width: 50%;
+    }
+
+    .pull-right {
+        float: left;
+        width: 50%;
+    }
+
+    .pull-right > div {
+        text-align: right;
+    }
+
+    .narrow {
+        width: 34%;
+    }
+
+    .center {
+        float: left;
+        width: 32%;
+    }
+
+    .center > div {
+        text-align: center;
+    }
+
+    .wide {
+        width: 100%;
+    }
+}

@@ -2,9 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import ajax from 'then-request'
 
-function StationLink(props) {
-  return <div onClick={props.onClick}>{props.name || props.key}</div>;
-}
+import StationLink from './StationLink'
 
 function Navs(props) {
   if (props.show) return <div id="navs">
