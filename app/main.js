@@ -4,7 +4,9 @@ import ajax from 'then-request'
 
 require("./style.css")
 require("./w350.css")
+require("./w600.css")
 require("./w768.css")
+require("./w1024.css")
 import Content from './Content'
 
 const stations = {
