@@ -18,8 +18,9 @@ function Navs(props) {
   function stationLink(station) {
     return <StationLink
       onClick={ () => ajax('GET', 'api/departures/' + station).done(handleDepartures) }
-      name={props.names[station]}
-      location={station}/>
+      names={props.names}
+      location={station}
+      key={station}/>
   }
 
   function handleDepartures(res) {
