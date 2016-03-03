@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import ajax from 'then-request'
 
 require("./style.css")
+require("./w350.css")
 require("./w768.css")
 import Content from './Content'
 
