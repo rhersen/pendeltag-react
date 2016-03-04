@@ -56,6 +56,10 @@ div.selected {
     color: blue;
 }
 
+nav > div {
+    display: none;
+}
+
 #trains {
     clear: both;
 }

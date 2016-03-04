@@ -19,8 +19,39 @@ function Navs(props) {
     return <StationLink
       onClick={ () => ajax('GET', 'api/departures/' + station).done(handleDepartures) }
       names={props.names}
+      className={classNames(station)}
       location={station}
       key={station}/>
+  }
+
+  function classNames(station) {
+    return _({
+      w350: w('Spå', undefined, 'Tu', undefined),
+      w600: w('Sub', 'So', 'Tu', 'Jbo'),
+      w768: w('Bål', 'Upv', 'Söu', 'Ssä'),
+      w1024: w('Kän', 'Nvk', 'Rön', 'Vhe'),
+      w1280: w('Bål', 'Upv', 'Gn', 'Nyh')
+    })
+      .pickBy(_.identity)
+      .keys()
+      .join(' ');
+
+    function w(nw, ne, sw, se) {
+      if (_.includes(props.stations.c, station))
+        return true;
+
+      if (nw && _.includes(props.stations.nw, station))
+        return _.indexOf(props.stations.nw, station) >= _.indexOf(props.stations.nw, nw);
+
+      if (ne && _.includes(props.stations.ne, station))
+        return _.indexOf(props.stations.ne, station) >= _.indexOf(props.stations.ne, ne);
+
+      if (sw && _.includes(props.stations.sw, station))
+        return _.indexOf(props.stations.sw, station) <= _.indexOf(props.stations.sw, sw);
+
+      if (se && _.includes(props.stations.se, station))
+        return _.indexOf(props.stations.se, station) <= _.indexOf(props.stations.se, se);
+    }
   }
 
   function handleDepartures(res) {

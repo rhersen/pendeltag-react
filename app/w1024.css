@@ -1,4 +1,8 @@
 @media screen and (min-width: 800px) and (max-width: 1024px) {
+    nav > div.w1024 {
+        display: block;
+    }
+
     .pull-left {
         float: left;
         width: 50%;

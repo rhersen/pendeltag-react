@@ -23,16 +23,4 @@ describe('StationLink', () => {
     const result = TestUtils.findRenderedDOMComponentWithTag(subject, 'div');
     expect(result.textContent).toEqual('Tul')
   })
-
-  it('shows Tullinge on mobile portrait', () => {
-    const subject = TestUtils.renderIntoDocument(<StationLink location="Tul"/>)
-    const result = TestUtils.findRenderedDOMComponentWithTag(subject, 'div');
-    expect(result.classList.contains('w350')).toBeTruthy()
-  })
-
-  it('does not show Norrviken on mobile portrait', () => {
-    const subject = TestUtils.renderIntoDocument(<StationLink location="Nvk"/>)
-    const result = TestUtils.findRenderedDOMComponentWithTag(subject, 'div');
-    expect(result.classList.contains('w350')).toBeFalsy()
-  })
 })

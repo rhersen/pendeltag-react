@@ -1,5 +1,5 @@
-@media screen and (min-width: 450px) and (max-width: 700px) {
-    nav > div.w600 {
+@media screen and (min-width: 1025px) {
+    nav > div.w1280 {
         display: block;
     }
 

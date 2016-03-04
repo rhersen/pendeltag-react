@@ -1,8 +1,4 @@
 @media screen and (max-width: 450px) {
-    nav > div {
-        display: none;
-    }
-
     nav > div.w350 {
         display: block;
     }
