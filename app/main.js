@@ -1,20 +1,28 @@
-const React = require('react')
+import React from 'react'
+import ReactDom from 'react-dom'
+import ajax from 'then-request'
 
 require("./style.css")
-const Content = require('./Content')
+require("./w350.css")
+require("./w600.css")
+require("./w768.css")
+require("./w1024.css")
+require("./w1280.css")
+
+import Content from './Content'
 
 const stations = {
-    nw: ['Kän', 'Khä', 'Jkb', 'Bkb', 'Spå', 'Sub'],
-    ne: ['Nvk', 'Hgv', 'Sol', 'Hel', 'Udl', 'So'],
-    c: ['Ke', 'Cst', 'Sst', 'Åbe', 'Äs'],
-    sw: ['Sta', 'Hu', 'Flb', 'Tul', 'Tu', 'Rön', 'Öte', 'Söd'],
-    se: ['Fas', 'Tåd', 'Skg', 'Hnd', 'Jbo', 'Vhe', 'Kda', 'Ts']
+  nw: ['Bål', 'Bro', 'Kän', 'Khä', 'Jkb', 'Bkb', 'Spå', 'Sub'],
+  ne: ['U', 'Kn', 'Arnc', 'Mr', 'Rs', 'Upv', 'R', 'Nvk', 'Hgv', 'Sol', 'Hel', 'Udl', 'So'],
+  c: ['Ke', 'Cst', 'Sst', 'Åbe', 'Äs'],
+  sw: ['Sta', 'Hu', 'Flb', 'Tul', 'Tu', 'Rön', 'Öte', 'Söd', 'Söc', 'Söu', 'Jn', 'Mö', 'Gn'],
+  se: ['Fas', 'Tåd', 'Skg', 'Hnd', 'Jbo', 'Vhe', 'Kda', 'Ts', 'Hfa', 'Ssä', 'Öso', 'Ngd', 'Gdv', 'Nyh']
 }
 
-const content = require('react-dom').render(<Content stations={stations}/>, document.getElementById('content'))
+const content = ReactDom.render(<Content stations={stations}/>, document.getElementById('content'))
 
 function setStations(res) {
-    content.setStations(JSON.parse(res.getBody()).RESPONSE.RESULT[0].TrainStation)
+  content.setStations(JSON.parse(res.getBody()).RESPONSE.RESULT[0].TrainStation)
 }
 
-require('then-request')('GET', 'api/stations').done(setStations)
+ajax('GET', 'api/stations').done(setStations)
