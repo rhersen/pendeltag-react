@@ -20,8 +20,13 @@ class Content extends React.Component {
     return <div>
       <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1}
             setTrains={(array) => this.setState({trains: array})}/>
-      <Trains trains={this.state.trains} stations={this.state.stations}/>
+      <Trains trains={_.filter(this.state.trains, isSouthbound)} stations={this.state.stations}/>
+      <Trains trains={_.reject(this.state.trains, isSouthbound)} stations={this.state.stations}/>
     </div>
+
+    function isSouthbound(train) {
+      return train.AdvertisedTrainIdent % 2
+    }
   }
 }
 

@@ -3,8 +3,10 @@ body {
     font-size: 36px
 }
 
-#trains table {
-    font-size: 17px
+table {
+    font-size: 18px;
+    display: inline-block;
+    margin: 4px;
 }
 
 #navs {
