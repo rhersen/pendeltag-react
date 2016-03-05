@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Time(props) {
-  return <td>{getData(props.data.AdvertisedTimeAtLocation)}</td>
+  return <td>{getData(props.data[props.field + 'TimeAtLocation'])}</td>
 
   function getData(s) {
     return s && s.substr(11, 5)
@@ -21,8 +21,10 @@ function Location(props) {
 
 function Train(props) {
   return <tr>
-    <Time data={props.data}/>
+    <Time data={props.data} field="Advertised"/>
     <Location data={props.data} stations={props.stations}/>
+    <Time data={props.data} field="Estimated"/>
+    <Time data={props.data} field=""/>
   </tr>
 }
 
