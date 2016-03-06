@@ -18,7 +18,8 @@ class Content extends React.Component {
 
   render() {
     return <div>
-      <Navs stations={this.props.stations} names={this.state.stations} show={this.state.trains.length < 1}
+      <Navs stations={this.props.stations} names={this.state.stations}
+            firstTrain={_.first(this.state.trains)}
             setTrains={(array) => this.setState({trains: array})}/>
       <Trains trains={_.filter(this.state.trains, isSouthbound)} stations={this.state.stations}/>
       <Trains trains={_.reject(this.state.trains, isSouthbound)} stations={this.state.stations}/>
