@@ -37,23 +37,23 @@ function Navs(props) {
     })
       .pickBy(_.identity)
       .keys()
-      .join(' ');
+      .join(' ')
 
     function w(nw, ne, sw, se) {
       if (_.includes(props.stations.c, station))
-        return true;
+        return true
 
       if (nw && _.includes(props.stations.nw, station))
-        return _.indexOf(props.stations.nw, station) >= _.indexOf(props.stations.nw, nw);
+        return _.indexOf(props.stations.nw, station) >= _.indexOf(props.stations.nw, nw)
 
       if (ne && _.includes(props.stations.ne, station))
-        return _.indexOf(props.stations.ne, station) >= _.indexOf(props.stations.ne, ne);
+        return _.indexOf(props.stations.ne, station) >= _.indexOf(props.stations.ne, ne)
 
       if (sw && _.includes(props.stations.sw, station))
-        return _.indexOf(props.stations.sw, station) <= _.indexOf(props.stations.sw, sw);
+        return _.indexOf(props.stations.sw, station) <= _.indexOf(props.stations.sw, sw)
 
       if (se && _.includes(props.stations.se, station))
-        return _.indexOf(props.stations.se, station) <= _.indexOf(props.stations.se, se);
+        return _.indexOf(props.stations.se, station) <= _.indexOf(props.stations.se, se)
     }
   }
 

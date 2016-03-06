@@ -5,10 +5,10 @@ import Trains from './Trains'
 
 class Content extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       stations: {}, trains: []
-    };
+    }
   }
 
   setStations(array) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Time(props) {
   return <td>{getData(props.data[props.field + 'TimeAtLocation'])}</td>
@@ -13,8 +13,8 @@ function Location(props) {
 
   function getData(a) {
     if (a) {
-      const key = a[0].LocationName;
-      return props.stations && props.stations[key] || key;
+      const key = a[0].LocationName
+      return props.stations && props.stations[key] || key
     }
   }
 }
