@@ -28,8 +28,8 @@ function Navs(props) {
     return _({
       w350: w('Spå', undefined, 'Tu', undefined),
       w600: w('Sub', 'So', 'Tu', 'Jbo'),
-      w768: w('Bål', 'Upv', 'Söu', 'Ssä'),
-      w1024: w('Kän', 'Nvk', 'Rön', 'Vhe'),
+      w768: w('Bål', 'Upv', 'Söc', 'Hfa'),
+      w1024: w('Kän', 'Nvk', 'Tu', 'Jbo'),
       w1280: w('Bål', 'Upv', 'Gn', 'Nyh')
     })
       .pickBy(_.identity)
