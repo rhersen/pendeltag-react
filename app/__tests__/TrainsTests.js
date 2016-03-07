@@ -2,6 +2,7 @@ jest.dontMock('../Trains')
 
 const React = require('react')
 const TestUtils = require('react-addons-test-utils')
+import _ from 'lodash'
 
 const Trains = require('../Trains')
 
@@ -26,13 +27,20 @@ describe('Trains', () => {
     expect(row.children[1].textContent).toEqual('')
   })
 
-  it('one train', () => {
+  it('estimated', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[0].textContent).toEqual('19:52')
     expect(row.children[1].textContent).toEqual('Mr')
     expect(row.children[2].textContent).toEqual('19:53')
+  })
+
+  it('departed', () => {
+    const t = _.assign(train(), { "TimeAtLocation": "2016-02-17T19:54:00" })
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[3].textContent).toEqual('19:54')
   })
 
@@ -52,8 +60,7 @@ describe('Trains', () => {
       "AdvertisedTrainIdent": "2762",
       "LocationSignature": "Tul",
       "ProductInformation": ["Pendeltåg", "36"],
-      "ToLocation": [{"LocationName": "Mr", "Priority": 1, "Order": 0}],
-      "TimeAtLocation": "2016-02-17T19:54:00"
+      "ToLocation": [{"LocationName": "Mr", "Priority": 1, "Order": 0}]
     }
   }
 })
