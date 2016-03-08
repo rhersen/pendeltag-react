@@ -29,7 +29,7 @@ function Countdown(props) {
     if (minutes < 1)
       return <td>-</td>
 
-    return <td>{minutes - 1}:{_.padStart(seconds + 60, 2, '0')}</td>
+    return <td className="countdown">{minutes - 1}:{_.padStart(seconds + 60, 2, '0')}</td>
   }
 
   return <td>?</td>
