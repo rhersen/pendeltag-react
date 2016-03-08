@@ -27,7 +27,7 @@ function Countdown(props) {
     var minutes = exec[2] - props.now.getMinutes() + hours * 60
 
     if (minutes < 1)
-      return <td>-</td>
+      return <td className="countdown">-</td>
 
     return <td className="countdown">{minutes - 1}:{_.padStart(seconds + 60, 2, '0')}</td>
   }
