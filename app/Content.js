@@ -17,12 +17,14 @@ class Content extends React.Component {
   }
 
   render() {
+    const now = new Date()
+
     return <div>
       <Navs stations={this.props.stations} names={this.state.stations}
             firstTrain={_.first(this.state.trains)}
             setTrains={(array) => this.setState({trains: array})}/>
-      <Trains trains={_.filter(this.state.trains, isSouthbound)} stations={this.state.stations}/>
-      <Trains trains={_.reject(this.state.trains, isSouthbound)} stations={this.state.stations}/>
+      <Trains trains={_.filter(this.state.trains, isSouthbound)} stations={this.state.stations} now={now}/>
+      <Trains trains={_.reject(this.state.trains, isSouthbound)} stations={this.state.stations} now={now}/>
     </div>
 
     function isSouthbound(train) {

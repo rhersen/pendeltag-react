@@ -28,12 +28,14 @@ describe('Trains', () => {
   })
 
   it('estimated', () => {
-    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]}/>)
+    const t = _.assign(train(), { "EstimatedTimeAtLocation": "2016-02-17T19:53:00" })
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]} now={ now(19, 52, 30) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[0].textContent).toEqual('19:52')
     expect(row.children[1].textContent).toEqual('Mr')
     expect(row.children[2].textContent).toEqual('19:53')
+    expect(row.children[4].textContent).toEqual('0:30')
   })
 
   it('departed', () => {
@@ -42,6 +44,34 @@ describe('Trains', () => {
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[3].textContent).toEqual('19:54')
+  })
+
+  it('not estimated', () => {
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 50, 30) }/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[4].textContent).toEqual('1:30')
+  })
+
+  it('pads seconds', () => {
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 50, 51) }/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[4].textContent).toEqual('1:09')
+  })
+
+  it('hour wrap', () => {
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(18, 59, 51) }/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[4].textContent).toEqual('52:09')
+  })
+
+  it('does not show negative time', () => {
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 52, 10) }/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[4].textContent).toEqual('-')
   })
 
   it('shows destination name if in stations', () => {
@@ -56,11 +86,18 @@ describe('Trains', () => {
     return {
       "ActivityType": "Avgang",
       "AdvertisedTimeAtLocation": "2016-02-17T19:52:00",
-      "EstimatedTimeAtLocation": "2016-02-17T19:53:00",
       "AdvertisedTrainIdent": "2762",
       "LocationSignature": "Tul",
       "ProductInformation": ["Pendeltåg", "36"],
       "ToLocation": [{"LocationName": "Mr", "Priority": 1, "Order": 0}]
+    }
+  }
+
+  function now(h, m, s) {
+    return {
+      getHours: _.constant(h),
+      getMinutes: _.constant(m),
+      getSeconds: _.constant(s)
     }
   }
 })
