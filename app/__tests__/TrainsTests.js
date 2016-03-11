@@ -28,50 +28,61 @@ describe('Trains', () => {
   })
 
   it('estimated', () => {
-    const t = _.assign(train(), { "EstimatedTimeAtLocation": "2016-02-17T19:53:00" })
+    const t = _.assign(train(), {"EstimatedTimeAtLocation": "2016-02-17T19:53:00"})
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]} now={ now(19, 52, 30) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[0].textContent).toEqual('19:52')
     expect(row.children[1].textContent).toEqual('Mr')
-    expect(row.children[2].textContent).toEqual('19:53')
-    expect(row.children[4].textContent).toEqual('0:30')
+    expect(row.children[2].textContent).toEqual('19:53/')
+    expect(row.children[3].textContent).toEqual('0:30')
   })
 
   it('departed', () => {
-    const t = _.assign(train(), { "TimeAtLocation": "2016-02-17T19:54:00" })
+    const t = _.assign(train(), {"TimeAtLocation": "2016-02-17T19:54:00"})
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[3].textContent).toEqual('19:54')
+    expect(row.children[2].textContent).toEqual('/19:54')
+  })
+
+  it('estimated and departed', () => {
+    const t = _.assign(train(), {
+      "EstimatedTimeAtLocation": "2016-02-17T19:53:00", "TimeAtLocation": "2016-02-17T19:54:00"
+    })
+
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[2].textContent).toEqual('19:53/19:54')
   })
 
   it('not estimated', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 50, 30) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[4].textContent).toEqual('1:30')
+    expect(row.children[3].textContent).toEqual('1:30')
   })
 
   it('pads seconds', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 50, 51) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[4].textContent).toEqual('1:09')
+    expect(row.children[3].textContent).toEqual('1:09')
   })
 
   it('hour wrap', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(18, 59, 51) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[4].textContent).toEqual('52:09')
+    expect(row.children[3].textContent).toEqual('52:09')
   })
 
   it('does not show negative time', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 52, 10) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[4].textContent).toEqual('-')
+    expect(row.children[3].textContent).toEqual('-')
   })
 
   it('shows destination name if in stations', () => {
@@ -95,9 +106,7 @@ describe('Trains', () => {
 
   function now(h, m, s) {
     return {
-      getHours: _.constant(h),
-      getMinutes: _.constant(m),
-      getSeconds: _.constant(s)
+      getHours: _.constant(h), getMinutes: _.constant(m), getSeconds: _.constant(s)
     }
   }
 })

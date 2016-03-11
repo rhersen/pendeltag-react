@@ -1,7 +1,15 @@
 import React from 'react'
 
 function Time(props) {
-  return <td>{getData(props.data[props.field + 'TimeAtLocation'])}</td>
+  if (props.field === 'Estimated') {
+    return <td>{getField(props.field)}/{getField('')}</td>
+  } else {
+    return <td>{getField(props.field)}</td>
+  }
+
+  function getField(field) {
+    return getData(props.data[field + 'TimeAtLocation'])
+  }
 
   function getData(s) {
     return s && s.substr(11, 5)
@@ -40,7 +48,6 @@ function Train(props) {
     <Time data={props.data} field="Advertised"/>
     <Location data={props.data} stations={props.stations}/>
     <Time data={props.data} field="Estimated"/>
-    <Time data={props.data} field=""/>
     <Countdown data={props.data} now={props.now}/>
   </tr>
 }
