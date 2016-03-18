@@ -55,6 +55,8 @@ describe('Trains', () => {
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[2].textContent).toEqual('19:53/19:54')
+    expect(row.children[2].querySelector('i').textContent).toEqual('19:53')
+    expect(row.children[2].querySelector('b').textContent).toEqual('19:54')
   })
 
   it('not estimated', () => {

@@ -63,5 +63,11 @@ function Navs(props) {
     props.setTrains(trainAnnouncement)
   }
 }
+Navs.propTypes = {
+  firstTrain: React.PropTypes.object,
+  names: React.PropTypes.object,
+  stations: React.PropTypes.object,
+  setTrains: React.PropTypes.func
+}
 
 module.exports = Navs

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Time(props) {
   if (props.field === 'Estimated') {
-    return <td>{getField(props.field)}/{getField('')}</td>
+    return <td><i>{getField(props.field)}</i>/<b>{getField('')}</b></td>
   } else {
     return <td>{getField(props.field)}</td>
   }
@@ -15,6 +15,9 @@ function Time(props) {
     return s && s.substr(11, 5)
   }
 }
+Time.propTypes = {
+  field: React.PropTypes.string
+}
 
 function Location(props) {
   return <td>{getData(props.data.ToLocation)}</td>
@@ -25,6 +28,10 @@ function Location(props) {
       return props.stations && props.stations[key] || key
     }
   }
+}
+Location.propTypes = {
+  data: React.PropTypes.object,
+  stations: React.PropTypes.object
 }
 
 function Countdown(props) {
@@ -42,6 +49,10 @@ function Countdown(props) {
 
   return <td>?</td>
 }
+Countdown.propTypes = {
+  data: React.PropTypes.object,
+  now: React.PropTypes.instanceOf(Date)
+}
 
 function Train(props) {
   return <tr>
@@ -50,6 +61,11 @@ function Train(props) {
     <Time data={props.data} field="Estimated"/>
     <Countdown data={props.data} now={props.now}/>
   </tr>
+}
+Train.propTypes = {
+  data: React.PropTypes.object,
+  now: React.PropTypes.instanceOf(Date),
+  stations: React.PropTypes.object
 }
 
 class Trains extends React.Component {
@@ -65,6 +81,11 @@ class Trains extends React.Component {
       </tbody>
     </table>
   }
+}
+Trains.propTypes = {
+  trains: React.PropTypes.array,
+  now: React.PropTypes.instanceOf(Date),
+  stations: React.PropTypes.object
 }
 
 module.exports = Trains

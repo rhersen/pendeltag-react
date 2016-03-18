@@ -36,5 +36,8 @@ class Content extends React.Component {
     }
   }
 }
+Content.propTypes = {
+  stations: React.PropTypes.object
+}
 
 module.exports = Content

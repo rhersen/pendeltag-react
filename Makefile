@@ -4,6 +4,7 @@ pull:
 	git pull
 
 test:
+	node_modules/.bin/eslint app/*.js
 	node_modules/.bin/jest
 
 bundle.js:	app/Content.js app/Navs.js app/Trains.js app/style.css

@@ -9,5 +9,11 @@ class StationLink extends React.Component {
     return <div className={this.props.className} onClick={this.props.onClick}>{name}</div>
   }
 }
+StationLink.propTypes = {
+  names: React.PropTypes.object,
+  location: React.PropTypes.string,
+  className: React.PropTypes.string,
+  onClick: React.PropTypes.func
+}
 
 module.exports = StationLink
