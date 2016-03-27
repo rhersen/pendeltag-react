@@ -13,13 +13,13 @@ describe('Trains', () => {
     expect(TestUtils.scryRenderedDOMComponentsWithTag(table, 'tr').length).toEqual(0)
   })
 
-  it("don't crash on empty train", () => {
+  it('does not crash on empty train', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={[{}]}/>)
 
     expect(TestUtils.scryRenderedDOMComponentsWithTag(table, 'tr').length).toEqual(0)
   })
 
-  it("don't crash if train only has id", () => {
+  it('does not crash if train only has id', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={[{AdvertisedTrainIdent: '2345'}]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
@@ -28,7 +28,7 @@ describe('Trains', () => {
   })
 
   it('estimated', () => {
-    const t = _.assign(train(), {"EstimatedTimeAtLocation": "2016-02-17T19:53:00"})
+    const t = _.assign(train(), {'EstimatedTimeAtLocation': '2016-02-17T19:53:00'})
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]} now={ now(19, 52, 30) }/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
@@ -39,7 +39,7 @@ describe('Trains', () => {
   })
 
   it('departed', () => {
-    const t = _.assign(train(), {"TimeAtLocation": "2016-02-17T19:54:00"})
+    const t = _.assign(train(), {'TimeAtLocation': '2016-02-17T19:54:00'})
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
@@ -48,7 +48,7 @@ describe('Trains', () => {
 
   it('estimated and departed', () => {
     const t = _.assign(train(), {
-      "EstimatedTimeAtLocation": "2016-02-17T19:53:00", "TimeAtLocation": "2016-02-17T19:54:00"
+      'EstimatedTimeAtLocation': '2016-02-17T19:53:00', 'TimeAtLocation': '2016-02-17T19:54:00'
     })
 
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
@@ -97,18 +97,18 @@ describe('Trains', () => {
 
   function train() {
     return {
-      "ActivityType": "Avgang",
-      "AdvertisedTimeAtLocation": "2016-02-17T19:52:00",
-      "AdvertisedTrainIdent": "2762",
-      "LocationSignature": "Tul",
-      "ProductInformation": ["Pendeltåg", "36"],
-      "ToLocation": [{"LocationName": "Mr", "Priority": 1, "Order": 0}]
+      'ActivityType': 'Avgang',
+      'AdvertisedTimeAtLocation': '2016-02-17T19:52:00',
+      'AdvertisedTrainIdent': '2762',
+      'LocationSignature': 'Tul',
+      'ProductInformation': ['Pendeltåg', '36'],
+      'ToLocation': [{'LocationName': 'Mr', 'Priority': 1, 'Order': 0}]
     }
   }
 
   function now(h, m, s) {
-    return {
-      getHours: _.constant(h), getMinutes: _.constant(m), getSeconds: _.constant(s)
-    }
+    const date = new Date()
+    date.setHours(h, m, s)
+    return date
   }
 })

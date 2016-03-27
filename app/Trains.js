@@ -1,11 +1,10 @@
 import React from 'react'
 
 function Time(props) {
-  if (props.field === 'Estimated') {
+  if (props.field === 'Estimated')
     return <td><i>{getField(props.field)}</i>/<b>{getField('')}</b></td>
-  } else {
-    return <td>{getField(props.field)}</td>
-  }
+
+  return <td>{getField(props.field)}</td>
 
   function getField(field) {
     return getData(props.data[field + 'TimeAtLocation'])
@@ -35,19 +34,21 @@ Location.propTypes = {
 }
 
 function Countdown(props) {
-  const exec = /T(\d\d):(\d\d):(\d\d)/.exec(props.data.EstimatedTimeAtLocation || props.data.AdvertisedTimeAtLocation)
-  if (props.now && exec) {
-    const hours = exec[1] - props.now.getHours()
-    const seconds = exec[3] - props.now.getSeconds()
-    var minutes = exec[2] - props.now.getMinutes() + hours * 60
+  const match = /T(\d\d):(\d\d):(\d\d)/.exec(props.data.EstimatedTimeAtLocation || props.data.AdvertisedTimeAtLocation)
 
+  if (props.now && match) {
+    const hours = match[1] - props.now.getHours()
+    return countdown(match[2] - props.now.getMinutes() + hours * 60, match[3] - props.now.getSeconds())
+  }
+
+  return <td>?</td>
+
+  function countdown(minutes, seconds) {
     if (minutes < 1)
       return <td className="countdown">-</td>
 
     return <td className="countdown">{minutes - 1}:{_.padStart(seconds + 60, 2, '0')}</td>
   }
-
-  return <td>?</td>
 }
 Countdown.propTypes = {
   data: React.PropTypes.object,
