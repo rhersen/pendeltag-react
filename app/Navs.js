@@ -29,27 +29,27 @@ function Navs(props) {
 
   function classNames(station) {
     return _({
-      w350: w('Spå', undefined, 'Tu', undefined),
-      w600: w('Sub', 'So', 'Tu', 'Jbo'),
-      w768: w('Bål', 'Upv', 'Söc', 'Hfa'),
-      w1024: w('Kän', 'Nvk', 'Tu', 'Jbo'),
-      w1280: w('Bål', 'Upv', 'Gn', 'Nyh')
+      w350: isInRange('Spå', undefined, 'Tu', undefined),
+      w600: isInRange('Sub', 'So', 'Tu', 'Jbo'),
+      w768: isInRange('Bål', 'Upv', 'Söc', 'Hfa'),
+      w1024: isInRange('Kän', 'Nvk', 'Tu', 'Jbo'),
+      w1280: isInRange('Bål', 'Upv', 'Gn', 'Nyh')
     })
       .pickBy(_.identity)
       .keys()
       .join(' ')
 
-    function w(nw, ne, sw, se) {
+    function isInRange() {
       if (_.includes(props.stations.c, station))
         return true
 
-      const found = _.find(
-        [[nw, props.stations.nw, _.gte], [ne, props.stations.ne, _.gte],
-          [sw, props.stations.sw, _.lte], [se, props.stations.se, _.lte]],
-        a => a[0] && _.includes(a[1], station))
-
-      if (found)
-        return found[2](_.indexOf(found[1], station), _.indexOf(found[1], found[0]))
+      return _(props.stations)
+        .reject((value, key) => key === 'c')
+        .map(locations => ({locations}))
+        .map((obj, i) => _.assign({end: arguments[i], cmp: i < 2 ? _.gte : _.lte}, obj))
+        .filter('end')
+        .filter(obj => _.includes(obj.locations, station))
+        .some(obj => obj.cmp(_.indexOf(obj.locations, station), _.indexOf(obj.locations, obj.end)))
     }
   }
 
