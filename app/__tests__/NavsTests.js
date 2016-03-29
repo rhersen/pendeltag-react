@@ -55,9 +55,9 @@ describe('Navs', () => {
   })
 
   it('southeast', () => {
-    const se = result.props.children[3].props.children
+    const se = result.props.children[4].props.children
     expect(se.length).toEqual(3)
-    expect(se[0].props.className).toEqual('w350 w600 w768 w1024 w1280')
+    expect(se[0].props.className).toEqual('w600 w768 w1024 w1280')
     expect(se[1].props.className).toEqual('w768 w1280')
     expect(se[2].props.className).toEqual('w1280')
   })

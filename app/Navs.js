@@ -43,17 +43,13 @@ function Navs(props) {
       if (_.includes(props.stations.c, station))
         return true
 
-      if (nw && _.includes(props.stations.nw, station))
-        return _.indexOf(props.stations.nw, station) >= _.indexOf(props.stations.nw, nw)
+      const found = _.find(
+        [[nw, props.stations.nw, _.gte], [ne, props.stations.ne, _.gte],
+          [sw, props.stations.sw, _.lte], [se, props.stations.se, _.lte]],
+        a => a[0] && _.includes(a[1], station))
 
-      if (ne && _.includes(props.stations.ne, station))
-        return _.indexOf(props.stations.ne, station) >= _.indexOf(props.stations.ne, ne)
-
-      if (sw && _.includes(props.stations.sw, station))
-        return _.indexOf(props.stations.sw, station) <= _.indexOf(props.stations.sw, sw)
-
-      if (se && _.includes(props.stations.se, station))
-        return _.indexOf(props.stations.se, station) <= _.indexOf(props.stations.se, se)
+      if (found)
+        return found[2](_.indexOf(found[1], station), _.indexOf(found[1], found[0]))
     }
   }
 
