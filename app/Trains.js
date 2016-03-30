@@ -1,8 +1,10 @@
 import React from 'react'
 
 function Time(props) {
-  if (props.field === 'Estimated')
-    return <td><i>{getField(props.field)}</i>/<b>{getField('')}</b></td>
+  if (props.field === 'Estimated') {
+    const actual = getField('')
+    return actual ? <td><b>{actual}</b></td> : <td><i>{getField(props.field)}</i></td>
+  }
 
   return <td>{getField(props.field)}</td>
 

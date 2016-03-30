@@ -34,7 +34,7 @@ describe('Trains', () => {
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
     expect(row.children[0].textContent).toEqual('19:52')
     expect(row.children[1].textContent).toEqual('Mr')
-    expect(row.children[2].textContent).toEqual('19:53/')
+    expect(row.children[2].textContent).toEqual('19:53')
     expect(row.children[3].textContent).toEqual('0:30')
   })
 
@@ -43,7 +43,7 @@ describe('Trains', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[2].textContent).toEqual('/19:54')
+    expect(row.children[2].textContent).toEqual('19:54')
   })
 
   it('estimated and departed', () => {
@@ -54,8 +54,7 @@ describe('Trains', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ t ]}/>)
 
     const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
-    expect(row.children[2].textContent).toEqual('19:53/19:54')
-    expect(row.children[2].querySelector('i').textContent).toEqual('19:53')
+    expect(row.children[2].textContent).toEqual('19:54')
     expect(row.children[2].querySelector('b').textContent).toEqual('19:54')
   })
 
