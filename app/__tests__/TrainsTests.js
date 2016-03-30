@@ -72,6 +72,13 @@ describe('Trains', () => {
     expect(row.children[3].textContent).toEqual('1:09')
   })
 
+  it('whole minute', () => {
+    const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(19, 50, 0) }/>)
+
+    const row = TestUtils.findRenderedDOMComponentWithTag(table, 'tr')
+    expect(row.children[3].textContent).toEqual('2:00')
+  })
+
   it('hour wrap', () => {
     const table = TestUtils.renderIntoDocument(<Trains trains={ [ train() ]} now={ now(18, 59, 51) }/>)
 

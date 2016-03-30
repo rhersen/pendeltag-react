@@ -40,16 +40,19 @@ function Countdown(props) {
 
   if (props.now && match) {
     const hours = match[1] - props.now.getHours()
-    return countdown(match[2] - props.now.getMinutes() + hours * 60, match[3] - props.now.getSeconds())
+    const wrap = match[3] < props.now.getSeconds()
+    return countdown(
+      wrap ? match[2] - props.now.getMinutes() + hours * 60 - 1 : match[2] - props.now.getMinutes() + hours * 60,
+      wrap ? 60 + (match[3] - props.now.getSeconds()) : match[3] - props.now.getSeconds())
   }
 
   return <td>?</td>
 
   function countdown(minutes, seconds) {
-    if (minutes < 1)
+    if (minutes < 0)
       return <td className="countdown">-</td>
 
-    return <td className="countdown">{minutes - 1}:{_.padStart(seconds + 60, 2, '0')}</td>
+    return <td className="countdown">{minutes}:{_.padStart(seconds, 2, '0')}</td>
   }
 }
 Countdown.propTypes = {
