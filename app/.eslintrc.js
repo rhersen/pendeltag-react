@@ -25,7 +25,7 @@ module.exports = {
   ],
   "rules": {
     "curly": ["error", "multi"],
-    "complexity": ["error", 4],
+    "complexity": ["error", 5],
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "max-depth": ["error", 2],
