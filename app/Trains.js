@@ -39,19 +39,19 @@ function Countdown(props) {
   const match = /T(\d\d):(\d\d):(\d\d)/.exec(props.data.EstimatedTimeAtLocation || props.data.AdvertisedTimeAtLocation)
 
   if (props.now && match) {
-    const hours = match[1] - props.now.getHours()
-    const wrap = match[3] < props.now.getSeconds()
-    return countdown(
-      wrap ? match[2] - props.now.getMinutes() + hours * 60 - 1 : match[2] - props.now.getMinutes() + hours * 60,
-      wrap ? 60 + (match[3] - props.now.getSeconds()) : match[3] - props.now.getSeconds())
+    const diff = match[3] - props.now.getSeconds() +
+      (match[2] - props.now.getMinutes()) * 60 +
+      (match[1] - props.now.getHours()) * 60 * 60
+
+    if (diff < 0)
+      return <td className="countdown">-</td>
+
+    return countdown((diff - diff % 60) / 60, diff % 60)
   }
 
   return <td>?</td>
 
   function countdown(minutes, seconds) {
-    if (minutes < 0)
-      return <td className="countdown">-</td>
-
     return <td className="countdown">{minutes}:{_.padStart(seconds, 2, '0')}</td>
   }
 }
