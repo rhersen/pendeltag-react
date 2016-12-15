@@ -1,6 +1,6 @@
-var config = {
-    context: __dirname + "/app",
-    entry: "./main.js",
+module.exports = {
+    context: __dirname + '/app',
+    entry: './main.js',
     module: {
         loaders: [
             {
@@ -11,19 +11,18 @@ var config = {
                     presets: ['es2015', 'react']
                 }
             },
-            {test: /\.css$/, loader: "style!css"}
+            {test: /\.css$/, loader: 'style!css'}
         ]
     },
     devServer: {
         proxy: {
             '/api/*': {
-                target: 'http://localhost:8081',
+                target: 'http://localhost:1337',
                 secure: false
             }
         }
     },
     output: {
-        filename: "bundle.js"
+        filename: 'bundle.js'
     }
-};
-module.exports = config;
+}
