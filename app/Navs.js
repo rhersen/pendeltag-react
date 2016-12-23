@@ -23,7 +23,7 @@ function Navs(props) {
     function stationLink(station) {
         return <StationLink
             onClick={
-                () => ajax('GET', 'api/trains?since=0:15&until=0:59&locations=' + station).done(handleDepartures)
+                () => ajax('GET', 'api/departures?since=0:15&until=0:59&locations=' + station).done(handleDepartures)
             }
             names={props.names}
             className={classNames(station)}
@@ -58,9 +58,7 @@ function Navs(props) {
     }
 
     function handleDepartures(res) {
-        const message = JSON.parse(res.getBody())
-        const trainAnnouncement = message.RESPONSE.RESULT[0].TrainAnnouncement
-        props.setTrains(trainAnnouncement.filter(a => a.ActivityType === 'Avgang'))
+        props.setTrains(JSON.parse(res.getBody()).RESPONSE.RESULT[0].TrainAnnouncement)
     }
 }
 Navs.propTypes = {
