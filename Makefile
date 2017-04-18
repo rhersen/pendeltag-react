@@ -1,4 +1,4 @@
-install:	pull test /opt/nginx-1.2.8/react/bundle.js /opt/nginx-1.2.8/react/index.html
+install:	pull test /opt/nginx/secure/react/bundle.js /opt/nginx/secure/react/index.html
 
 pull:
 	git pull
@@ -9,8 +9,8 @@ test:
 bundle.js:	app/Content.js app/Navs.js app/Trains.js app/style.css
 	node_modules/.bin/webpack
 
-/opt/nginx-1.2.8/react/bundle.js:	bundle.js
-	cp bundle.js /opt/nginx-1.2.8/react/
+/opt/nginx/secure/react/bundle.js:	bundle.js
+	cp bundle.js /opt/nginx/secure/react/
 
-/opt/nginx-1.2.8/react/index.html:	index.html
-	cp index.html /opt/nginx-1.2.8/react/
+/opt/nginx/secure/react/index.html:	index.html
+	cp index.html /opt/nginx/secure/react/

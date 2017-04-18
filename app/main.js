@@ -25,4 +25,4 @@ function setStations(res) {
   content.setStations(JSON.parse(res.getBody()).RESPONSE.RESULT[0].TrainStation)
 }
 
-ajax('GET', 'api/stations').done(setStations)
+ajax('GET', '/json/stations').done(setStations)

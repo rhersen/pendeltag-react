@@ -23,7 +23,7 @@ function Navs(props) {
     function stationLink(station) {
         return <StationLink
             onClick={
-                () => ajax('GET', 'api/departures?since=0:15&until=0:59&locations=' + station).done(handleDepartures)
+                () => ajax('GET', '/json/departures?since=0:15&until=0:59&locations=' + station).done(handleDepartures)
             }
             names={props.names}
             className={classNames(station)}
