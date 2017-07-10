@@ -14,7 +14,7 @@ import Content from './Content'
 const stations = {
   nw: ['Bål', 'Bro', 'Kän', 'Khä', 'Jkb', 'Bkb', 'Spå', 'Sub'],
   ne: ['U', 'Kn', 'Arnc', 'Mr', 'Rs', 'Upv', 'R', 'Nvk', 'Hgv', 'Sol', 'Hel', 'Udl', 'So'],
-  c: ['Ke', 'Cst', 'Sst', 'Åbe', 'Äs'],
+  c: ['Sod', 'Sci', 'Sst', 'Åbe', 'Äs'],
   sw: ['Sta', 'Hu', 'Flb', 'Tul', 'Tu', 'Rön', 'Öte', 'Söd', 'Söc', 'Söu', 'Jn', 'Mö', 'Gn'],
   se: ['Fas', 'Tåd', 'Skg', 'Hnd', 'Jbo', 'Vhe', 'Kda', 'Ts', 'Hfa', 'Ssä', 'Öso', 'Ngd', 'Gdv', 'Nyh']
 }
